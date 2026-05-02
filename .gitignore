@@ -1,0 +1,80 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.python-version
+.venv/
+venv/
+env/
+ENV/
+
+# Packaging / build
+build/
+dist/
+site/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Logs / temp
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Environment files
+.env
+.env.*
+
+# Project runtime outputs
+outputs/logs/
+outputs/cache/
+outputs/results/
+
+# Generated agent assets and experiment intermediates
+data/agents/
+data/agents_*/
+data/flashrag_assets/
+data/datasets/eipBenchmark/
+
+# Indexes / vectors / model artifacts
+*.faiss
+*.npy
+*.npz
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+
+# Local model directories
+models/
+
+# FlashRAG local build artifacts
+FlashRAG/build/
+FlashRAG/dist/
+FlashRAG/*.egg-info/
+
+# Keep repository source and docs by default.
+# If you want to keep a small published sample under ignored trees,
+# add a negation rule below, for example:
+# !data/agents_demo/

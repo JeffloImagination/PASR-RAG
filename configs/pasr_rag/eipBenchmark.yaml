@@ -1,0 +1,85 @@
+project:
+  name: "PASR-RAG"
+  version: "0.1.0"
+  random_seed: 42
+
+models:
+  embedding_model: "BAAI/bge-base-zh-v1.5"
+  embedding_model_path: "models/bge-base-zh-v1.5"
+  embedding_batch_size: 32
+  llm_model: "qwen-plus"
+
+preprocessing:
+  chunk_size: 384
+  chunk_overlap: 80
+  source_partition:
+    target_sources: 7
+    strategy: "fixed_source_to_agent"
+
+router:
+  strategy: "pasr"
+  alpha: 1.0
+  beta: 0.5
+  privacy_budget_mode: "ratio"
+  privacy_budget_B: 3.0
+  privacy_budget_ratio: 0.3
+  max_active_sources_k: 3
+  relevance_method: "centroid_cosine"
+  threshold: 0.2
+
+retrieval:
+  backend: "bm25"
+  top_m_per_source: 5
+  enable_parallel_retrieval: true
+  max_workers: 4
+  cache_enabled: true
+  bm25_k1: 1.5
+  bm25_b: 0.75
+
+generation:
+  backend: "openai_compatible"
+  enable_summarization: true
+  enable_central_fusion: true
+  max_summary_tokens: 200
+  max_fusion_tokens: 512
+  max_context_tokens: 4096
+  temperature: 0.0
+  max_answer_tokens: 256
+  api_base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  api_key_env: "DASHSCOPE_API_KEY"
+  fallback_to_extract: true
+  local_summary_prompt_path: "docs/检索智能体内部摘要提示词.md"
+  central_fusion_prompt_path: "docs/中心智能体证据聚合提示词.md"
+  final_answer_prompt_path: "docs/中心智能体最终答案提示词.md"
+  local_summary_fallback_to_extract: true
+
+privacy:
+  enable_privacy_term: true
+  enable_relevance_term: true
+  privacy_eval_method: "llm_eval"
+  prompt_path: "docs/隐私成本评估提示词.md"
+  sample_ratio: 0.1
+  max_sample_chunks: 48
+  max_chunk_chars: 1200
+
+evaluation:
+  metrics:
+    - "em"
+    - "f1"
+    - "acc"
+    - "support_fact_recall"
+    - "avg_selected_privacy_cost"
+    - "hrhr"
+    - "bbr"
+    - "avg_activated_sources"
+    - "latency_routing"
+    - "latency_e2e"
+
+paths:
+  data_root: "data"
+  agent_root: "data/agents_eipBenchmark"
+  raw_data_root: "data/raw/eipBenchmark"
+  cache_root: "outputs/cache"
+  logs_root: "outputs/logs"
+  results_root: "outputs/results"
+  flashrag_root: "FlashRAG"
