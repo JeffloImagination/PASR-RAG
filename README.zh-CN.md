@@ -193,22 +193,4 @@ python scripts/prepare_eipbenchmark.py \
 - `latency_routing`
 - `latency_e2e`
 
-## 已有实验结果
 
-仓库中已经包含较多实验输出，主要位于 `outputs/results/`。
-
-例如 `outputs/results/main_experiment_matrix_full50_llm_local_summary_prompt_v2/matrix_summary.json` 中记录了 50 条样本上的 PASR-RAG 与 FlashRAG 基线对比结果，因此该仓库既适合复现实验，也适合继续扩展。
-
-## 发布到 GitHub 前的建议
-
-- 当前仓库包含较多本地大文件，主要在 `models/`、`data/` 和 `outputs/`。
-- 如果准备公开发布，建议清理生成产物，或将大文件交给 Git LFS 管理。
-- `FlashRAG/` 看起来是随仓携带的外部框架，公开发布时建议在 README 或 LICENSE 中说明其来源与许可证。
-
-## 引用
-
-如果你在论文、毕业设计或其他学术工作中使用了本项目，建议补充对应论文、项目主页或 BibTeX 引用信息。
-
-## 许可证
-
-仓库根目录目前没有顶层许可证文件。若你准备将项目发布到 GitHub，建议补充明确的开源许可证。
